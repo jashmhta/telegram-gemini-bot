@@ -1,10 +1,10 @@
-# Telegram Bot with Gemini 2.5 Pro Integration
+# Telegram Bot with Gemini Integration
 
-A Telegram bot that uses Google's Gemini 2.5 Pro API to respond to user messages.
+A Telegram bot that uses Google's Gemini AI to respond to user messages.
 
 ## Features
 
-- Responds to user messages using Gemini 2.5 Pro AI
+- Responds to user messages using Gemini 1.5 Pro AI
 - Maintains conversation history for context-aware responses
 - Handles long responses by splitting them into multiple messages
 - Includes commands for starting, clearing history, and getting help
@@ -20,7 +20,7 @@ A Telegram bot that uses Google's Gemini 2.5 Pro API to respond to user messages
 1. Clone this repository
 2. Install dependencies:
    ```
-   pip install python-telegram-bot google-generativeai requests python-dotenv
+   pip install -r requirements.txt
    ```
 3. Create a `.env` file with your API keys:
    ```

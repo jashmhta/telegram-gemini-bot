@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Telegram Bot with Gemini 2.5 Pro Integration
-This bot uses the Gemini 2.5 Pro API to respond to user messages on Telegram.
+Telegram Bot with Gemini Integration
+This bot uses the Gemini API to respond to user messages on Telegram.
 """
 
 import os
@@ -32,8 +32,9 @@ genai.configure(api_key=GEMINI_API_KEY)
 conversation_history = {}
 
 # Initialize Gemini model with enhanced parameters
+# Using models/gemini-1.5-pro which is available in the API
 model = genai.GenerativeModel(
-    model_name='gemini-2.5-pro',
+    model_name='models/gemini-1.5-pro',
     generation_config={
         'temperature': 0.7,
         'top_p': 0.95,
@@ -44,7 +45,7 @@ model = genai.GenerativeModel(
 
 # System prompt to guide the model's behavior
 SYSTEM_PROMPT = """
-You are a helpful, friendly, and knowledgeable assistant powered by Gemini 2.5 Pro.
+You are a helpful, friendly, and knowledgeable assistant powered by Gemini.
 Your responses should be informative, engaging, and accurate.
 If you're unsure about something, acknowledge your uncertainty rather than providing incorrect information.
 Be respectful, avoid harmful content, and maintain a conversational tone.
@@ -60,15 +61,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     conversation_history[user_id] = []
     
     await update.message.reply_text(
-        f"Hi {user.first_name}! I'm a Gemini 2.5 Pro powered bot. Ask me anything!"
+        f"Hi {user.first_name}! I'm a Gemini powered bot. Ask me anything!"
     )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
     help_text = """
-I'm a Telegram bot powered by Gemini 2.5 Pro. Here's how you can use me:
+I'm a Telegram bot powered by Gemini. Here's how you can use me:
 
-- Just send me any message and I'll respond using Gemini 2.5 Pro
+- Just send me any message and I'll respond using Gemini
 - Use /start to restart our conversation and clear chat history
 - Use /help to see this help message
 - Use /clear to clear our conversation history
@@ -85,7 +86,7 @@ async def clear_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
 # Message handler
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Process user messages and respond using Gemini 2.5 Pro with conversation history."""
+    """Process user messages and respond using Gemini with conversation history."""
     user_id = update.effective_user.id
     user_message = update.message.text
     
